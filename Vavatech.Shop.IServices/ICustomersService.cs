@@ -4,9 +4,10 @@ using Vavatech.Shop.Models;
 
 namespace Vavatech.Shop.IServices
 {
-    public interface ICustomersService : IEntitiesService<Customer>
+    public interface ICustomersService : IEntitiesService<Customer>, 
+        ISearchable<Customer>
     {
-
+        
     }
 
 

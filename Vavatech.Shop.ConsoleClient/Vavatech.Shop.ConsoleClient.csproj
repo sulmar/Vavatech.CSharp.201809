@@ -5,6 +5,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Vavatech.Shop.FakeServices\Vavatech.Shop.FakeServices.csproj" />
     <ProjectReference Include="..\Vavatech.Shop.IServices\Vavatech.Shop.IServices.csproj" />

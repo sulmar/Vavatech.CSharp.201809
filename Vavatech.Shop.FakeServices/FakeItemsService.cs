@@ -34,6 +34,21 @@ namespace Vavatech.Shop.FakeServices
             throw new NotImplementedException();
         }
 
+        public List<Item> Search(string arg)
+        {
+            List<Item> results = new List<Item>();
+
+            foreach (Item item in items)
+            {
+                if (item.EAN.Contains(arg))
+                {
+                    results.Add(item);
+                }
+            }
+
+            return results;
+        }
+
         public void Update(Item item)
         {
             throw new NotImplementedException();

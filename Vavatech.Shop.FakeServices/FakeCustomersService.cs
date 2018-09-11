@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using Vavatech.Shop.IServices;
 using Vavatech.Shop.Models;
+using System.Linq;
+using Bogus;
 
 namespace Vavatech.Shop.FakeServices
 {
+    // Install-Package Bogus
     public class FakeCustomersService : ICustomersService
     {
         private List<Customer> customers;
@@ -12,21 +15,19 @@ namespace Vavatech.Shop.FakeServices
         // ctor
         public FakeCustomersService()
         {
-            customers = new List<Customer>
-            {
-                new Customer
-                {
-                    Id = 1,
-                    FirstName = "Marcin",
-                },
+            var fakeCustomers = new Faker<Customer>()
+               .StrictMode(true)
+               .RuleFor(p => p.Id, f => f.IndexFaker)
+               .RuleFor(p => p.FirstName, f => f.Person.FirstName)
+               .RuleFor(p => p.LastName, f => f.Person.LastName)
+               .RuleFor(p => p.VatNumber, f => f.Finance.Iban())
+               .RuleFor(p => p.Salary, f => f.Finance.Amount())
+               .RuleFor(p => p.Address, f => f.Address.FullAddress())
+               
+               .FinishWith((f, customer) => Console.WriteLine($"Customer was created {customer}"));
 
-                new Customer
-                {
-                    Id = 2,
-                    FirstName = "Bartek",
-                    LastName = "Sulecki"
-                },
-            };
+            customers = fakeCustomers.Generate(100);
+                
 
             //Customer customer1 = new Customer();
             //customer1.Id = 1;
@@ -73,6 +74,29 @@ namespace Vavatech.Shop.FakeServices
         public decimal Calculate(Customer customer)
         {
             return 100;
+        }
+
+        public List<Customer> Search(string arg)
+        {
+            //List<Customer> results = new List<Customer>();
+
+            //foreach (Customer customer in customers)
+            //{
+            //    if (customer.VatNumber.Contains(arg))
+            //    {
+            //        results.Add(customer);
+            //    }
+            //}
+
+            //return results;
+
+            return customers
+                    .Where(c => c.VatNumber.Contains(arg))
+                    .OrderBy(c => c.FirstName)
+                    .ThenBy(c => c.LastName)
+                    .Select(c => new Customer(c.Id, c.LastName.ToLower()))
+                    .ToList();
+            
         }
     }
 }
