@@ -12,6 +12,7 @@ namespace Vavatech.Shop.Models
 
         public string Name { get; set; }
         public decimal UnitPrice { get; set; }
+        public string EAN { get; set; }
 
 
         public void Print()

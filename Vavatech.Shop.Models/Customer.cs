@@ -4,9 +4,14 @@ namespace Vavatech.Shop.Models
 {
     public class Customer : Base
     {
+        #region Properties
+
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string VatNumber { get; set; }
+
+        #endregion
 
         public Customer()
         {
@@ -21,7 +26,7 @@ namespace Vavatech.Shop.Models
         }
 
 
-
+        #region Salary
         private decimal salary;
 
         public decimal Salary
@@ -41,6 +46,8 @@ namespace Vavatech.Shop.Models
             }
         }
 
+        #endregion
+
 
         public string Address { get; set; }
 
@@ -49,7 +56,7 @@ namespace Vavatech.Shop.Models
             get
             {
                 // return string.Format("{0} {2}", FirstName, LastName);
-                return $"{FirstName} {LastName}";
+                return $"{Id} {VatNumber} {FirstName} {LastName}";
             }
         }
 

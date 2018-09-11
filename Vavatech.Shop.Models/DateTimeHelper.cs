@@ -22,4 +22,12 @@ namespace Vavatech.Shop.Extensions
     }
 
 
+    public static class ListExtensions
+    {
+        public static int GetIndex<T>(this List<T> list, T entity)
+        {
+            return list.IndexOf(entity) + 1;
+        }
+    }
+
 }

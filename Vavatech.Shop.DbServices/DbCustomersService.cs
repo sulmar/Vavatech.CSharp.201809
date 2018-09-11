@@ -27,6 +27,11 @@ namespace Vavatech.Shop.DbServices
             throw new NotImplementedException();
         }
 
+        public List<Customer> Search(string arg)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Customer customer)
         {
             throw new NotImplementedException();
