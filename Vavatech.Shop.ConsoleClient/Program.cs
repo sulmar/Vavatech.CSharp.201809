@@ -75,21 +75,7 @@ namespace Vavatech.Shop.ConsoleClient
 
             } while (item != null);
 
-
-            order.RoomStatus = RoomStatus.L1 | RoomStatus.O | RoomStatus.P;
-
-            if (order.RoomStatus.HasFlag(RoomStatus.P))
-            {
-                WriteLine("Display screen");
-            }
-
-            if (order.Status == OrderStatus.Sent)
-            {
-            }
-
-
-
-
+            // EnumTest(order);
 
             // ExtensionsMethodTest();
 
@@ -108,6 +94,20 @@ namespace Vavatech.Shop.ConsoleClient
 
             Helper.GreaterThanZero(100);
 
+        }
+
+        private static void EnumTest(Order order)
+        {
+            order.RoomStatus = RoomStatus.L1 | RoomStatus.O | RoomStatus.P;
+
+            if (order.RoomStatus.HasFlag(RoomStatus.P))
+            {
+                WriteLine("Display screen");
+            }
+
+            if (order.Status == OrderStatus.Sent)
+            {
+            }
         }
 
         private static void LinqTest()
