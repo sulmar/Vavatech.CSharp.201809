@@ -74,11 +74,19 @@ namespace Vavatech.Shop.ConsoleClient
             // ICustomersService customersService = new FakeCustomersService();
             ICustomersService customersService = serviceProvider.GetService<ICustomersService>();
 
+            var query = customersService.Get();
 
             var customers = customersService.Search(new CustomerSearchCriteria { Country = "Poland" });
 
+            var newCustomers = new FakeCustomersService().Get();
 
-            LinqTest();
+            foreach (var newCustomer in newCustomers)
+            {
+                customersService.Add(newCustomer);
+            }
+
+
+            LinqTest(customersService);
 
 
             // Uwaga: W przypadku float/double mimo dzielenia przez zero nie pojawi się błąd, 
@@ -113,7 +121,7 @@ namespace Vavatech.Shop.ConsoleClient
 
             // ExtensionsMethodTest();
 
-            // GetCustomersTest();
+             GetCustomersTest();
 
             // GetItemsTest();
 
@@ -144,9 +152,8 @@ namespace Vavatech.Shop.ConsoleClient
             }
         }
 
-        private static void LinqTest()
+        private static void LinqTest(ICustomersService customersService)
         {
-            ICustomersService customersService = new FakeCustomersService();
             var customers = customersService.Get();
 
             var query = customers.GroupBy(c => c.FirstName)
