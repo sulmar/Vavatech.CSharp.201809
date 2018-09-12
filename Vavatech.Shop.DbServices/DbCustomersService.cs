@@ -71,11 +71,6 @@ namespace Vavatech.Shop.DbServices
             return results.ToList();
         }
 
-        public List<Customer> Search(string arg)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update(Customer customer)
         {
             context.Customers.Update(customer);
