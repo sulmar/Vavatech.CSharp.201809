@@ -6,6 +6,11 @@ namespace Vavatech.Shop.Models
 {
     public partial class Order : Base
     {
+        protected Order()
+        {
+
+        }
+
         public Order(Customer customer)
         {
             if (customer == null)

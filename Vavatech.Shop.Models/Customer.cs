@@ -11,6 +11,11 @@ namespace Vavatech.Shop.Models
         public string LastName { get; set; }
         public string VatNumber { get; set; }
 
+
+        public Address WorkAddress { get; set; }
+        public Address HomeAddress { get; set; }
+
+
         #endregion
 
         public Customer()
@@ -48,8 +53,6 @@ namespace Vavatech.Shop.Models
 
         #endregion
 
-
-        public string Address { get; set; }
 
         public string FullName
         {

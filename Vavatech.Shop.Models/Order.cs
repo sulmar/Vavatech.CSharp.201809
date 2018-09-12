@@ -6,6 +6,7 @@ namespace Vavatech.Shop.Models
 
     public partial class Order : Base
     {
+        public int Id { get; set; }
         public DateTime OrderDate { get; set; }
         public string OrderNumber { get; set; }
 

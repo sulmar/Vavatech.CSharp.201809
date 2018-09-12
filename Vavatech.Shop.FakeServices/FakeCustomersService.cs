@@ -4,6 +4,7 @@ using Vavatech.Shop.IServices;
 using Vavatech.Shop.Models;
 using System.Linq;
 using Bogus;
+using Vavatech.Shop.Models.SearchCriteria;
 
 namespace Vavatech.Shop.FakeServices
 {
@@ -15,6 +16,13 @@ namespace Vavatech.Shop.FakeServices
         // ctor
         public FakeCustomersService()
         {
+            var fakeAddresses = new Faker<Address>()
+                .StrictMode(true)
+                .RuleFor(p => p.City, f => f.Address.City())
+                .RuleFor(p => p.Country, f => f.Address.Country())
+                .RuleFor(p => p.ZipCode, f => f.Address.ZipCode())
+                .FinishWith((f, address) => Console.WriteLine($"Address was generated {address}"));
+
             var fakeCustomers = new Faker<Customer>()
                .StrictMode(true)
                .RuleFor(p => p.Id, f => f.IndexFaker)
@@ -22,7 +30,8 @@ namespace Vavatech.Shop.FakeServices
                .RuleFor(p => p.LastName, f => f.Person.LastName)
                .RuleFor(p => p.VatNumber, f => f.Finance.Iban())
                .RuleFor(p => p.Salary, f => f.Finance.Amount())
-               .RuleFor(p => p.Address, f => f.Address.FullAddress())
+               .RuleFor(p => p.WorkAddress, f => fakeAddresses)
+               .RuleFor(p => p.HomeAddress, f => fakeAddresses)
                
                .FinishWith((f, customer) => Console.WriteLine($"Customer was created {customer}"));
 
@@ -97,6 +106,28 @@ namespace Vavatech.Shop.FakeServices
                     .Select(c => new Customer(c.Id, c.LastName.ToLower()))
                     .ToList();
             
+        }
+
+        public List<Customer> Search(CustomerSearchCriteria criteria)
+        {
+            IEnumerable<Customer> results = customers;
+
+            if (!string.IsNullOrEmpty(criteria.Country))
+            {
+                results = results.Where(c => c.HomeAddress.Country == criteria.Country);
+            }
+
+            if (!string.IsNullOrEmpty(criteria.City))
+            {
+                results = results.Where(c => c.HomeAddress.City == criteria.City);
+            }
+
+            if (!string.IsNullOrEmpty(criteria.Name))
+            {
+                results = results.Where(c => c.FirstName == criteria.Name);
+            }
+
+            return results.ToList();
         }
     }
 }

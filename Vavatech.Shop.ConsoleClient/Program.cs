@@ -6,6 +6,12 @@ using Vavatech.Shop.IServices;
 using Vavatech.Shop.Models;
 using Vavatech.Shop.Extensions;
 using static System.Console;
+using Vavatech.Shop.Models.SearchCriteria;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using Microsoft.Extensions.DependencyInjection;
+using Vavatech.Shop.DbServices;
+using Microsoft.EntityFrameworkCore;
 
 namespace Vavatech.Shop.ConsoleClient
 {
@@ -43,6 +49,34 @@ namespace Vavatech.Shop.ConsoleClient
         static void Main(string[] args)
         {
             WriteLine("Hello World!");
+
+            // Install-Package Microsoft.Extensions.Configuration
+            // Install-Package Microsoft.Extensions.Configuration.FileExtensions
+            // Install-Package Microsoft.Extensions.Configuration.Json
+            var builder = new ConfigurationBuilder()
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfigurationRoot configuration = builder.Build();
+
+            WriteLine(configuration.GetConnectionString("ShopConnection"));
+
+            // Install-Package Microsoft.Extensions.DependencyInjection
+            ServiceCollection services = new ServiceCollection();
+            services.AddTransient<ICustomersService, DbCustomersService>();
+
+            // Install-Package Microsoft.EntityFrameworkCore.SqlServer
+            services.AddDbContext<ShopContext>(options => options
+                        .UseSqlServer(configuration.GetConnectionString("ShopConnection")));
+
+            ServiceProvider serviceProvider = services.BuildServiceProvider();
+
+            // ICustomersService customersService = new FakeCustomersService();
+            ICustomersService customersService = serviceProvider.GetService<ICustomersService>();
+
+
+            var customers = customersService.Search(new CustomerSearchCriteria { Country = "Poland" });
+
 
             LinqTest();
 
@@ -212,11 +246,14 @@ namespace Vavatech.Shop.ConsoleClient
             if (customers.Any())
             {
                 WriteLine($"Znaleziono {customers.Count}");
-                foreach (Customer customer in customers)
-                {
-                    WriteLine($"{customers.IndexOf(customer)+1} \t- {customer}");
 
-                }
+
+                //foreach (Customer customer in customers)
+                //{
+                //    WriteLine($"{customers.IndexOf(customer)+1} \t- {customer}");
+                //}
+
+                customers.ForEach(customer => WriteLine($"{customers.IndexOf(customer) + 1} \t- {customer}"));
 
                 Write("Podaj indeks");
 
