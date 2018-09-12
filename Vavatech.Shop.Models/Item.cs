@@ -4,6 +4,11 @@ namespace Vavatech.Shop.Models
 {
     public abstract class Item : Base
     {
+        public Item()
+        {
+
+        }
+
         protected Item(string name, decimal unitPrice)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));

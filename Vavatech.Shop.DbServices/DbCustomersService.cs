@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Vavatech.Shop.IServices;
@@ -28,7 +29,10 @@ namespace Vavatech.Shop.DbServices
 
         public List<Customer> Get()
         {
-            return context.Customers.ToList();
+            return context.Customers
+                .Include(p=>p.WorkAddress)  // Eager loading
+                .Include(p=>p.HomeAddress)
+                .ToList();
         }
 
         public Customer Get(int id)
@@ -55,12 +59,12 @@ namespace Vavatech.Shop.DbServices
 
             if (!string.IsNullOrEmpty(criteria.Country))
             {
-                results = results.Where(c => c.HomeAddress.Country == criteria.Country);
+                results = results.Where(c => c.HomeAddress?.Country == criteria.Country);
             }
 
             if (!string.IsNullOrEmpty(criteria.City))
             {
-                results = results.Where(c => c.HomeAddress.City == criteria.City);
+                results = results.Where(c => c.HomeAddress?.City == criteria.City);
             }
 
             if (!string.IsNullOrEmpty(criteria.Name))

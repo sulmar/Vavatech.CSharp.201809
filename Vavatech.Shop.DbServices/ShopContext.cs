@@ -19,6 +19,8 @@ namespace Vavatech.Shop.DbServices
             : base(options)
         {
             this.Database.EnsureCreated();
+
+
         }
     }
 }

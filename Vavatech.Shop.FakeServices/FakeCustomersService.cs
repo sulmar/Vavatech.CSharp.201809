@@ -18,6 +18,7 @@ namespace Vavatech.Shop.FakeServices
         {
             var fakeAddresses = new Faker<Address>()
                 .StrictMode(true)
+                .Ignore(p => p.Id)
                 .RuleFor(p => p.City, f => f.Address.City())
                 .RuleFor(p => p.Country, f => f.Address.Country())
                 .RuleFor(p => p.ZipCode, f => f.Address.ZipCode())
@@ -25,7 +26,7 @@ namespace Vavatech.Shop.FakeServices
 
             var fakeCustomers = new Faker<Customer>()
                .StrictMode(true)
-               .RuleFor(p => p.Id, f => f.IndexFaker)
+               .Ignore(p => p.Id)
                .RuleFor(p => p.FirstName, f => f.Person.FirstName)
                .RuleFor(p => p.LastName, f => f.Person.LastName)
                .RuleFor(p => p.VatNumber, f => f.Finance.Iban())

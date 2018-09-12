@@ -4,6 +4,13 @@ namespace Vavatech.Shop.Models
 {
     public class Product : Item
     {
+
+        public Product()
+            : base()
+        {
+
+        }
+
         public Product(string name, decimal unitPrice, string color)
             : base(name, unitPrice)
         {
