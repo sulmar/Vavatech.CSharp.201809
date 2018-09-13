@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.Shop.ConsoleClient", "Vavatech.Shop.ConsoleClient\Vavatech.Shop.ConsoleClient.csproj", "{593D23BA-C1C7-46D9-A630-DB2BDBC7048F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.Shop.ConsoleClient", "Vavatech.Shop.ConsoleClient\Vavatech.Shop.ConsoleClient.csproj", "{593D23BA-C1C7-46D9-A630-DB2BDBC7048F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.Shop.Models", "Vavatech.Shop.Models\Vavatech.Shop.Models.csproj", "{24793EE1-78DA-49F0-9557-C91C26E14CD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.Shop.Models", "Vavatech.Shop.Models\Vavatech.Shop.Models.csproj", "{24793EE1-78DA-49F0-9557-C91C26E14CD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.Shop.IServices", "Vavatech.Shop.IServices\Vavatech.Shop.IServices.csproj", "{C1FE5E66-3CA4-45BE-BBCA-27CB5B39E1D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.Shop.IServices", "Vavatech.Shop.IServices\Vavatech.Shop.IServices.csproj", "{C1FE5E66-3CA4-45BE-BBCA-27CB5B39E1D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.Shop.FakeServices", "Vavatech.Shop.FakeServices\Vavatech.Shop.FakeServices.csproj", "{D0B1EAAE-1679-425A-B01D-04096EA28E2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.Shop.FakeServices", "Vavatech.Shop.FakeServices\Vavatech.Shop.FakeServices.csproj", "{D0B1EAAE-1679-425A-B01D-04096EA28E2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.Shop.DbServices", "Vavatech.Shop.DbServices\Vavatech.Shop.DbServices.csproj", "{4F09F143-DAEE-497A-B10D-08B36CB0ABCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.Shop.DbServices", "Vavatech.Shop.DbServices\Vavatech.Shop.DbServices.csproj", "{4F09F143-DAEE-497A-B10D-08B36CB0ABCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.Shop.Server", "Vavatech.Shop.Server\Vavatech.Shop.Server.csproj", "{A98A91A1-81E8-4CA2-96EE-8C4E2BBAE978}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.Shop.RemoteClient", "Vavatech.Shop.RemoteClient\Vavatech.Shop.RemoteClient.csproj", "{A078E8B9-22A6-4B16-A0AC-B3691181D880}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{4F09F143-DAEE-497A-B10D-08B36CB0ABCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F09F143-DAEE-497A-B10D-08B36CB0ABCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F09F143-DAEE-497A-B10D-08B36CB0ABCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A98A91A1-81E8-4CA2-96EE-8C4E2BBAE978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A98A91A1-81E8-4CA2-96EE-8C4E2BBAE978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A98A91A1-81E8-4CA2-96EE-8C4E2BBAE978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A98A91A1-81E8-4CA2-96EE-8C4E2BBAE978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A078E8B9-22A6-4B16-A0AC-B3691181D880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A078E8B9-22A6-4B16-A0AC-B3691181D880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A078E8B9-22A6-4B16-A0AC-B3691181D880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A078E8B9-22A6-4B16-A0AC-B3691181D880}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
