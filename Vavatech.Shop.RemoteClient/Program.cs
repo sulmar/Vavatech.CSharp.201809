@@ -16,6 +16,8 @@ namespace Vavatech.Shop.RemoteClient
         {
             Console.WriteLine($"#{Thread.CurrentThread.ManagedThreadId} Hello World!");
 
+            DisposableTest();
+
             // Thread.Sleep(TimeSpan.FromSeconds(3));
 
             //AddCustomerTest();
@@ -55,13 +57,48 @@ namespace Vavatech.Shop.RemoteClient
             // Asynchroniczna
             // TaskTest();
 
-
             // AsyncAwaitTest();
 
             Console.WriteLine($"#{Thread.CurrentThread.ManagedThreadId} Press Enter key to exit.");
 
             Console.ReadLine();
 
+        }
+
+        private static void DisposableTest()
+        {
+            Printer printer = new Printer();
+
+            try
+            {
+                printer.Print("Hello World");
+            }
+            catch (Exception e)
+            {
+            }
+
+            finally
+            {
+                printer.Dispose();
+            }
+
+
+            //Printer printer2 = new Printer();
+            //printer2.Dispose();
+            //printer2.Print("Hello");
+
+            try
+            {
+                using (Printer printer3 = new Printer())
+                {
+                    printer3.Print("Hello");
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         private static void AsyncAwaitTest()

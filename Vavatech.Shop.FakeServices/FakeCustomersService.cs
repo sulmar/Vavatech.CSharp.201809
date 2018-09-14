@@ -5,6 +5,7 @@ using Vavatech.Shop.Models;
 using System.Linq;
 using Bogus;
 using Vavatech.Shop.Models.SearchCriteria;
+using System.Threading.Tasks;
 
 namespace Vavatech.Shop.FakeServices
 {
@@ -129,6 +130,36 @@ namespace Vavatech.Shop.FakeServices
             }
 
             return results.ToList();
+        }
+
+        public Task<List<Customer>> GetAsync()
+        {
+            return Task.Run(() => Get());
+        }
+
+        public Task<List<Customer>> SearchAsync(string arg)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Customer> GetAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AddAsync(Customer entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateAsync(Customer entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveAsync(Customer entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

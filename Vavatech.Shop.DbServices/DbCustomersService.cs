@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Vavatech.Shop.IServices;
 using Vavatech.Shop.Models;
 using Vavatech.Shop.Models.SearchCriteria;
@@ -27,6 +28,12 @@ namespace Vavatech.Shop.DbServices
             context.SaveChanges();
         }
 
+        public async Task AddAsync(Customer entity)
+        {
+            await context.Customers.AddAsync(entity);
+            await context.SaveChangesAsync();
+        }
+
         public List<Customer> Get()
         {
             return context.Customers
@@ -40,10 +47,26 @@ namespace Vavatech.Shop.DbServices
             return context.Customers.Find(id);
         }
 
+        public Task<List<Customer>> GetAsync()
+        {
+            return context.Customers.ToListAsync();
+        }
+
+        public Task<Customer> GetAsync(int id)
+        {
+            return context.Customers.FindAsync(id);
+        }
+
         public void Remove(Customer customer)
         {
             context.Customers.Remove(customer);
             context.SaveChanges();
+        }
+
+        public async Task RemoveAsync(Customer entity)
+        {
+            context.Customers.Remove(entity);
+            await context.SaveChangesAsync();
         }
 
         public List<Customer> Search(string arg)
@@ -75,10 +98,25 @@ namespace Vavatech.Shop.DbServices
             return results.ToList();
         }
 
+        public async Task<List<Customer>> SearchAsync(string arg)
+        {
+             return await context.Customers
+                .Where(c => c.VatNumber.Contains(arg))
+                .ToListAsync();
+        }
+
         public void Update(Customer customer)
         {
             context.Customers.Update(customer);
             context.SaveChanges();
         }
+
+        public async Task UpdateAsync(Customer entity)
+        {
+            context.Customers.Update(entity);
+            await context.SaveChangesAsync();
+        }
+
+      
     }
 }

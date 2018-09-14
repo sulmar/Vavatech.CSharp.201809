@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Vavatech.Shop.IServices;
 using Vavatech.Shop.Models;
 
@@ -25,6 +26,11 @@ namespace Vavatech.Shop.DbServices
         {
             context.AddRange(items);
             context.SaveChanges();
+        }
+
+        public Task<List<Item>> SearchAsync(string arg)
+        {
+            throw new NotImplementedException();
         }
     }
 }

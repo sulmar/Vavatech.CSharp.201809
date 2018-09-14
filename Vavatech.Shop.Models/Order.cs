@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Vavatech.Shop.Models
 {
@@ -16,8 +17,16 @@ namespace Vavatech.Shop.Models
         public List<OrderDetail> Details { get; set; }
 
         public OrderStatus Status { get; set; }
-
         public RoomStatus RoomStatus { get; set; }
+
+        public decimal TotalAmount
+        {
+            get
+            {
+                return Details.Sum(d => d.TotalAmount);
+            }
+        }
+
 
     }
 

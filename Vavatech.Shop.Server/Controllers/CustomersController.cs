@@ -19,9 +19,9 @@ namespace Vavatech.Shop.Server.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(customersService.Get());
+            return Ok(await customersService.GetAsync());
         }
         
 
